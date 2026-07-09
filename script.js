@@ -8,17 +8,41 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // simple contact form handler (no backend yet — shows a confirmation state)
+  // contact form handler - submits to Formspree without leaving the page
   var form = document.querySelector('#enquiry-form');
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var status = document.querySelector('#form-status');
-      if (status) {
-        status.textContent = 'Thanks — your enquiry has been noted. This form is a placeholder until it is connected to a real inbox (see setup notes provided separately).';
-        status.style.display = 'block';
-      }
-      form.reset();
+      var submitBtn = form.querySelector('button[type="submit"]');
+      var formData = new FormData(form);
+
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          if (status) {
+            status.textContent = "Thanks, your enquiry has been sent. We'll get back to you shortly.";
+            status.style.display = 'block';
+            status.style.color = 'var(--rust)';
+          }
+          form.reset();
+        } else {
+          throw new Error('Form submission failed');
+        }
+      }).catch(function () {
+        if (status) {
+          status.textContent = "Something went wrong sending that. Please email us directly at info@civicbuildco.com.au instead.";
+          status.style.display = 'block';
+          status.style.color = '#C0392B';
+        }
+      }).finally(function () {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send enquiry'; }
+      });
     });
   }
 

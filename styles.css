@@ -1,27 +1,27 @@
 /* ============================================================
    CIVIC BUILD CO — Design tokens
-   Palette: Deep Indigo-Charcoal / Cool Concrete / Emerald / Amber / Steel
-   Display: Sora (contemporary geometric sans, confident headlines)
-   Body: Plus Jakarta Sans (warm, modern, highly legible)
+   Palette: Soft Charcoal-Navy / Warm Cream / Muted Sage / Soft Gold
+   Display: Manrope (contemporary, clean, quietly confident)
+   Body: Inter (neutral, modern, highly legible)
    Utility: JetBrains Mono (spec / tender reference codes)
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
 
 :root{
-  --ink:        #161C2C;   /* deep indigo-charcoal - nav, headers, footer */
-  --ink-2:      #232C42;   /* lighter panel tone */
-  --concrete:   #F1F2EE;   /* page background - cool light grey */
-  --concrete-2: #F7F7F3;   /* section-alt background */
-  --rust:       #0F9D74;   /* primary accent - emerald */
-  --amber:      #F2A93B;   /* secondary accent - warm amber, CTAs */
-  --steel:      #5C6670;   /* secondary text, rules */
-  --charcoal:   #1B2230;   /* body text */
+  --ink:        #24302E;   /* soft charcoal-navy - nav, headers, footer */
+  --ink-2:      #303F3C;   /* lighter panel tone */
+  --concrete:   #FAF8F4;   /* page background - warm cream */
+  --concrete-2: #FFFFFF;   /* section-alt background */
+  --rust:       #5C7B6F;   /* primary accent - muted sage */
+  --amber:      #C99A44;   /* secondary accent - soft gold, CTAs */
+  --steel:      #75807C;   /* secondary text, rules */
+  --charcoal:   #2A322F;   /* body text */
   --white:      #FFFFFF;
 
-  --display: 'Sora', sans-serif;
-  --label:   'Sora', sans-serif;
-  --body:    'Plus Jakarta Sans', sans-serif;
+  --display: 'Manrope', sans-serif;
+  --label:   'Manrope', sans-serif;
+  --body:    'Inter', sans-serif;
   --mono:    'JetBrains Mono', monospace;
 
   --max: 1180px;
@@ -46,8 +46,8 @@ a{ color: inherit; text-decoration:none; }
 h1,h2,h3,h4{
   font-family: var(--display);
   font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.08;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
   margin: 0;
   color: var(--ink);
 }
@@ -593,6 +593,36 @@ footer a:hover{ color: var(--white); }
   padding: 4px 9px;
   border-radius: 999px;
 }
+
+/* project photo — shows the real image once uploaded, or a clear placeholder if not */
+.project-photo{
+  position:relative;
+  aspect-ratio: 4/3;
+  overflow:hidden;
+  background: repeating-linear-gradient(135deg, #E4E0D4 0 2px, var(--concrete-2) 2px 14px);
+}
+.project-photo img{
+  width:100%; height:100%;
+  object-fit: cover;
+  display:block;
+}
+.project-photo .img-missing-label{
+  display:none;
+  position:absolute; inset:0;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  text-align:center;
+  padding:16px;
+  border: 1px dashed var(--steel);
+  color: var(--steel);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+}
+.project-photo.img-missing .img-missing-label{ display:flex; }
 
 .skip-link{
   position:absolute; left:-999px; top:auto;
