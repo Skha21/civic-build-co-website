@@ -519,9 +519,9 @@ footer a:hover{ color: var(--white); }
 .trust-row{
   display:flex;
   flex-wrap:wrap;
-  justify-content:space-between;
-  gap: 22px 32px;
-  padding: 26px 0;
+  justify-content:center;
+  gap: 18px 36px;
+  padding: 26px 8px;
 }
 .trust-item{
   display:flex;
@@ -537,6 +537,15 @@ footer a:hover{ color: var(--white); }
   border-radius: 50%;
   background: var(--rust);
   flex-shrink:0;
+}
+@media (max-width:640px){
+  .trust-row{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:14px;
+    padding: 24px 20px;
+  }
 }
 
 /* ---------- difference grid (4-col feature list) ---------- */
@@ -629,6 +638,33 @@ footer a:hover{ color: var(--white); }
   background:var(--amber); color:var(--ink); padding:10px 16px; z-index:100;
 }
 .skip-link:focus{ left: 12px; top:12px; }
+
+/* ---------- home page recent-work gallery ---------- */
+.home-gallery{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.gallery-item{
+  display:block;
+  position:relative;
+  aspect-ratio: 4 / 3;
+  overflow:hidden;
+  border-radius: 4px;
+}
+.gallery-item img{
+  width:100%; height:100%;
+  object-fit: cover;
+  display:block;
+  transition: transform .35s ease;
+}
+.gallery-item:hover img{ transform: scale(1.06); }
+@media (max-width:900px){
+  .home-gallery{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width:560px){
+  .home-gallery{ grid-template-columns: 1fr 1fr; gap: 10px; }
+}
 
 @media (prefers-reduced-motion: reduce){
   *{ scroll-behavior: auto !important; transition:none !important; }
